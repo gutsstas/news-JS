@@ -3,7 +3,7 @@ export interface SourceInt {
   country?: string;
   description?: string;
   id: string;
-  language?: string
+  language?: string;
   name: string;
   url?: string;
 }
