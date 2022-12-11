@@ -124,7 +124,7 @@
 @media (min-width: 640px) {
     .news__item {
         flex-direction: row;
-        max-width: 700px;
+        max-width: 95vw;
     }
 
     .news__item .news__meta {
@@ -162,5 +162,12 @@
 
     .news__item.alt .news__meta-details {
         padding-left: 25px;
+    }
+}
+
+@media (max-width: 850px) {
+    .news__item {
+        flex-direction: row;
+        max-width: 95vw;
     }
 }

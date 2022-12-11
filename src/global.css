@@ -1,7 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -13,6 +21,10 @@ header h1 {
     font-weight: 800;
 }
 
+.main{
+  flex: 1 1 auto;
+}
+
 footer {
     height: 100px;
     display: flex;
@@ -21,11 +33,11 @@ footer {
 }
 footer .copyright {
     font-size: 14px;
-    color: #333;
+    color: #858383;
     text-align: center;
 }
 footer .copyright a {
-    color: #444;
+  color: #858383;
 }
 footer .copyright a:hover {
     color: #555;
@@ -33,3 +45,148 @@ footer .copyright a:hover {
 footer .copyright:before {
     content: '©';
 }
+
+.burger {
+  display: none;
+  cursor: pointer;
+}
+/* .burger,
+.close {
+  margin-left: 30px;
+} */
+
+.burger__active {
+  display: none !important;
+}
+
+.burger_background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background: #000000ca;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.background-true {
+  display: block !important;
+}
+
+.close{
+  display: none;
+}
+
+.close__btn {
+  width: 40px;
+  cursor: pointer;
+  position: fixed;
+  z-index: 12;
+}
+
+.close__active{
+  display: block;
+  height: 44px;
+}
+
+.close__btn line {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 15;
+}
+
+
+::-webkit-scrollbar-track {
+	background-color: #444;
+  border-radius: 5px;
+} 
+::-webkit-scrollbar-thumb { 
+	border-radius: 5px;
+	background-color: #437c92;
+}
+
+::-webkit-scrollbar { 
+	width: 15px;
+}
+
+.sources.buttons::-webkit-scrollbar { 
+	width: 5px;
+}
+
+.footer{
+  display: flex;
+  height: 40px;
+  margin-top: 50px;
+}
+
+.footer * {
+  margin-left: 10px;
+  color: #858383;
+}
+.copyright,
+.copyright a {
+  color: #858383;
+} 
+
+.logo__link{
+  height: 100%;
+}
+
+.logoRS{
+  height: 80%;
+}
+
+.author {
+  text-decoration: none;
+}
+
+.author:hover {
+  color: #555;
+}
+@media screen and (max-width: 900px) {
+
+  .source__item {
+    padding: 0.5em 0.8em;
+  }
+  
+}
+
+@media screen and (max-width: 600px){
+  .footer {
+    flex-wrap: wrap;
+  }
+  .burger {
+    display: block;
+  }
+
+    .sources.buttons{
+      flex-direction: column;
+      align-items: end;
+      width: auto;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      transition: 1s;
+    }
+    .sources.buttons {
+      overflow: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .sources.buttons::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    .menuTrue{
+      right: 0 !important;
+      transition: 1s;
+      z-index: 11;
+    }
+
+}
+
+
