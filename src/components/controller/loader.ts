@@ -5,6 +5,15 @@ type loaderType = {
   };
 };
 
+enum Err {
+  status1 = 401,
+  status2 = 404,
+}
+
+type optionType = {
+  sources: string;
+};
+
 type callback<T> = (data: T) => void;
 
 class Loader {
@@ -22,14 +31,14 @@ class Loader {
 
   errorHandler(res: Response): Response | never {
     if (!res.ok) {
-      if (res.status === 401 || res.status === 404)
+      if (res.status === Err.status1 || res.status === Err.status2)
         console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
       throw Error(res.statusText);
     }
     return res;
   }
 
-  makeUrl(options: { sources?: string }, endpoint: string) {
+  makeUrl(options: Partial<optionType>, endpoint: string) {
     const urlOptions: Record<string, string> = { ...this.options, ...options };
     let url = `${this.baseLink}${endpoint}?`;
 
@@ -40,7 +49,7 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  load<T>(method: string, endpoint: string, callback: callback<T>, options: { sources?: string }) {
+  load<T>(method: string, endpoint: string, callback: callback<T>, options: Partial<optionType>) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then((res) => this.errorHandler(res))
       .then((res) => res.json())
