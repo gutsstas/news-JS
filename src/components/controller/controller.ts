@@ -1,7 +1,11 @@
 import AppLoader from './appLoader';
+import { DrawSources, DrawNews } from '../../interface';
+
+
+type callback<T> = (data: T) => void;
 
 class AppController extends AppLoader {
-    getSources(callback) {
+    getSources(callback: callback<DrawSources>) {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -10,13 +14,13 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e, callback) {
-        let target = e.target;
-        const newsContainer = e.currentTarget;
+    getNews(e: Event, callback: callback<DrawNews>) {
+        let target = <HTMLTemplateElement>e.target;
+        const newsContainer = <HTMLTemplateElement>e.currentTarget;
 
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
-                const sourceId = target.getAttribute('data-source-id');
+                const sourceId = target.getAttribute('data-source-id') as string;
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
                     super.getResp(
@@ -31,7 +35,7 @@ class AppController extends AppLoader {
                 }
                 return;
             }
-            target = target.parentNode;
+            target = <HTMLTemplateElement>target.parentNode;
         }
     }
 }
